@@ -1,8 +1,6 @@
 package com.siirush.statement.builder.model;
 
-import java.util.Map;
-
-public class Identifier implements Component {
+public class Identifier implements Evaluatable {
 	private final String name;
 	
 	public Identifier(String name) {
@@ -13,7 +11,7 @@ public class Identifier implements Component {
 		return name;
 	}
 
-	public String evaluate(Map<String, String> context) {
-		return context.get(name);
+	public String evaluate(StatementContext context) {
+		return context.getValue(name);
 	}
 }

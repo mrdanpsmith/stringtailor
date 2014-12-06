@@ -1,8 +1,7 @@
 package com.siirush.statement.builder.model;
 
-import java.util.Map;
 
-public class Literal implements Component {
+public class Literal implements Evaluatable {
 	private final String text;
 	
 	public Literal(String text) {
@@ -13,7 +12,7 @@ public class Literal implements Component {
 		return text;
 	}
 
-	public String evaluate(Map<String, String> context) {
+	public String evaluate(StatementContext context) {
 		if (text == null) {
 			return "";
 		}

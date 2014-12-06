@@ -4,17 +4,17 @@ import java.util.List;
 
 public class Expression {
 	private final Boolean required;
-	private List<Component> components;
+	private List<Evaluatable> components;
 	
 	public Expression(Boolean required) {
 		this.required = required;
 	}
 
-	public List<Component> getComponents() {
+	public List<Evaluatable> getComponents() {
 		return components;
 	}
 
-	public void setComponents(List<Component> components) {
+	public void setComponents(List<Evaluatable> components) {
 		this.components = components;
 	}
 
