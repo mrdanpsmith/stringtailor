@@ -5,7 +5,7 @@ import com.siirush.statement.builder.model.Identifier;
 import com.siirush.statement.builder.model.Literal;
 import com.siirush.statement.builder.model.StatementContext;
 
-public class StatementHelper {
+public class StatementDsl {
 	public static StatementBuilder statementBuilder() {
 		return new StatementBuilderImpl();
 	}
@@ -17,6 +17,9 @@ public class StatementHelper {
 	}
 	public static CompoundIdentifier compoundIdentifier(String name, String prefix, String delimiter, String suffix) {
 		return new CompoundIdentifier(name,prefix,delimiter,suffix);
+	}
+	public static CompoundIdentifier compoundIdentifier(String name, String delimiter) {
+		return new CompoundIdentifier(name,null,delimiter,null);
 	}
 	public static StatementContext statementContext() {
 		return new StatementContext();
