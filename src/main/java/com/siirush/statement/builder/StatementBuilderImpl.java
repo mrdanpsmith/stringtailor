@@ -25,7 +25,7 @@ public class StatementBuilderImpl implements StatementBuilder {
 		return this;
 	}
 
-	public Statement build() {
+	public Statement done() {
 		return new Statement(expressions);
 	}
 }

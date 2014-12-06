@@ -1,5 +1,6 @@
 package com.siirush.statement.builder.model;
 
+
 public class Var implements Evaluatable {
 	private final String name;
 	
@@ -11,7 +12,7 @@ public class Var implements Evaluatable {
 		return name;
 	}
 
-	public String evaluate(StatementContext context) {
-		return context.getValue(name);
+	public String evaluate(Object value) {
+		return value == null ? null : value.toString();
 	}
 }

@@ -6,5 +6,5 @@ import com.siirush.statement.builder.model.Statement;
 public interface StatementBuilder {
 	StatementBuilder add(Evaluatable ... components);
 	StatementBuilder optional(Evaluatable ... components);
-	Statement build();
+	Statement done();
 }

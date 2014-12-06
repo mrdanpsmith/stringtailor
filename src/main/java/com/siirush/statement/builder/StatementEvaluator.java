@@ -1,8 +1,9 @@
 package com.siirush.statement.builder;
 
+import java.util.Map;
+
 import com.siirush.statement.builder.model.Statement;
-import com.siirush.statement.builder.model.StatementContext;
 
 public interface StatementEvaluator {
-	String buildStatement(Statement statement, StatementContext context);
+	String buildStatement(Statement statement, Map<String,Object> context);
 }

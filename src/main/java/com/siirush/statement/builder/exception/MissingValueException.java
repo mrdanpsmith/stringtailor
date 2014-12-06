@@ -1,6 +1,6 @@
 package com.siirush.statement.builder.exception;
 
-public class MissingValueException extends RuntimeException {
+public class MissingValueException extends StatementBuilderException {
 	private static final long serialVersionUID = 3788308096553327790L;
 
 	public MissingValueException() {
