@@ -2,9 +2,9 @@ package com.siirush.statement.builder.model;
 
 import java.util.List;
 
-public class CompoundIdentifier implements Evaluatable {
+public class CompoundVar implements Evaluatable {
 	private final String name, prefix, suffix, delimiter;
-	public CompoundIdentifier(String name, String prefix, String delimiter, String suffix) {
+	public CompoundVar(String name, String prefix, String delimiter, String suffix) {
 		this.name = name;
 		this.prefix = prefix;
 		this.delimiter = delimiter;

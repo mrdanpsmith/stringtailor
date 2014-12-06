@@ -1,9 +1,9 @@
 package com.siirush.statement.builder.model;
 
-public class Identifier implements Evaluatable {
+public class Var implements Evaluatable {
 	private final String name;
 	
-	public Identifier(String name) {
+	public Var(String name) {
 		this.name = name;
 	}
 	
