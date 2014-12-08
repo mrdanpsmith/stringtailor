@@ -4,6 +4,9 @@ import com.siirush.stringtailor.model.Literal;
 import com.siirush.stringtailor.model.Var;
 import com.siirush.stringtailor.model.VarList;
 
+/**
+ * This class's methods can be statically included to allow for a simpler usage syntax.
+ */
 public class StringTailorDsl {
 	public static StringTailor statement() {
 		return new StringTailorImpl();

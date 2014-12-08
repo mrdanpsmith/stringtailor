@@ -31,7 +31,8 @@ StringTailor will be in maven central.  Simply add the following dependency:
 Usage
 -----
 Great usage examples can be found in the test cases.  I included a couple of those
-in text here for reference.
+in text here for reference.  It is important to note that statically including
+StringTailorDsl's methods is required in order to write code like the following.
 
 Simple usage:
 ```Java
