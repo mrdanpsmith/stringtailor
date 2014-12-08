@@ -1,8 +1,8 @@
-package com.siirush.statement.builder.model;
+package com.siirush.stringtailor.model;
 
 import java.util.List;
 
-import com.siirush.statement.builder.exception.UnexpectedValueException;
+import com.siirush.stringtailor.exception.UnexpectedValueException;
 
 public class VarList implements Evaluatable {
 	private final String name;
@@ -34,14 +34,11 @@ public class VarList implements Evaluatable {
 		if (config.prefix != null) {
 			sb.append(config.prefix);
 		}
-		boolean first = true;
-		for (Object listValue: values) {
-			if (!first) {
+		for (int i = 0; i < values.size(); i++) {
+			if (i != 0) {
 				sb.append(config.delimiter);
-			} else {
-				first = false;
 			}
-			sb.append(listValue);
+			sb.append(values.get(i));
 		}
 		if (config.suffix != null) {
 			sb.append(config.suffix);

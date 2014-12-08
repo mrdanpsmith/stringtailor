@@ -1,12 +1,12 @@
-package com.siirush.statement.builder;
+package com.siirush.stringtailor;
 
-import com.siirush.statement.builder.model.Literal;
-import com.siirush.statement.builder.model.Var;
-import com.siirush.statement.builder.model.VarList;
+import com.siirush.stringtailor.model.Literal;
+import com.siirush.stringtailor.model.Var;
+import com.siirush.stringtailor.model.VarList;
 
-public class StatementDsl {
-	public static StatementBuilder statement() {
-		return new StatementBuilderImpl();
+public class StringTailorDsl {
+	public static StringTailor statement() {
+		return new StringTailorImpl();
 	}
 	public static Var var(String name) {
 		return new Var(name);
@@ -26,7 +26,7 @@ public class StatementDsl {
 	public static VarList.Config listConfig(String delimiter) {
 		return new VarList.Config(delimiter);
 	}
-	public static StatementContextBuilder context() {
-		return new StatementContextBuilderImpl();
+	public static ContextBuilder context() {
+		return new ContextBuilderImpl();
 	}
 }

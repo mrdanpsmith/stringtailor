@@ -1,11 +1,11 @@
-package com.siirush.statement.builder.model;
+package com.siirush.stringtailor.model;
 
 import java.util.List;
 
-public class Statement {
+public class EvaluatableStatement {
 	private final List<Expression> expressions;
 	
-	public Statement(List<Expression> expressions) {
+	public EvaluatableStatement(List<Expression> expressions) {
 		this.expressions = expressions;
 	}
 

@@ -1,16 +1,16 @@
-package com.siirush.statement.builder;
+package com.siirush.stringtailor;
 
 import java.util.Map;
 
-import com.siirush.statement.builder.exception.MissingValueException;
-import com.siirush.statement.builder.model.Evaluatable;
-import com.siirush.statement.builder.model.Expression;
-import com.siirush.statement.builder.model.Statement;
+import com.siirush.stringtailor.exception.MissingValueException;
+import com.siirush.stringtailor.model.Evaluatable;
+import com.siirush.stringtailor.model.Expression;
+import com.siirush.stringtailor.model.EvaluatableStatement;
 
 public class StatementEvaluatorImpl implements StatementEvaluator {
-	public String buildStatement(Statement statement, Map<String,Object> context) {
+	public String evaluate(EvaluatableStatement evaluatableStatement, Map<String,Object> context) {
 		StringBuilder sb = new StringBuilder();
-		for (Expression expression: statement.getExpressions()) {
+		for (Expression expression: evaluatableStatement.getExpressions()) {
 			sb.append(evaluateExpression(expression,context));
 		}
 		return sb.toString();
@@ -22,7 +22,7 @@ public class StatementEvaluatorImpl implements StatementEvaluator {
 			Object componentValue = context.get(component.getName());
 			String evaluated = component.evaluate(componentValue);
 			if (evaluated == null && expression.getRequired()) {
-				throw new MissingValueException(String.format("Missing value found evaluating a required expression."));
+				throw new MissingValueException("Missing value found evaluating a required expression.");
 			}
 			if (evaluated == null) {
 				return new StringBuilder();

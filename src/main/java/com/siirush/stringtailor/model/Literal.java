@@ -1,4 +1,4 @@
-package com.siirush.statement.builder.model;
+package com.siirush.stringtailor.model;
 
 
 
