@@ -7,14 +7,13 @@ Is not StringBuilder or String.format enough?
 I was writing a lot of code that had to deal with building complex
 string statements.  A problem I encountered while doing so is that
 the methods started to get out of control in both size and number.
-At that point, I decided that there was probably for a string
-utility that reduced the complexity of creating statements with
-optional clauses and lists of variables.
+At that point, I decided that there was probably a need for a 
+string utility that reduced the complexity of creating statements 
+with optional clauses and lists of variables.
 
 StringBuilder and String.format are both great utilities, but this
 library is a higher level abstraction that allows statements to be
-built quickly and with great care given to make the declarations
-understandable in code.
+built quickly and more understandably.
 
 Installation
 ------------
@@ -24,7 +23,7 @@ StringTailor will be in maven central.  Simply add the following dependency:
 <dependency>
     <groupId>com.siirush</groupId>
     <artifactId>stringtailor</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 </dependency>
 ```
 

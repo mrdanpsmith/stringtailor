@@ -13,7 +13,7 @@
   
   <name>StatementTailor</name>
   <description>A mechanism for building string statements.</description>
-  <url>http://github.com/mrdanpsmith/string-tailor</url>
+  <url>http://github.com/mrdanpsmith/stringtailor</url>
   
   <licenses>
   	<license>
@@ -24,9 +24,9 @@
 
   <scm>
     <tag>@scm.tag@</tag>
-    <url>https://github.com/mrdanpsmith/string-tailor</url>
-    <connection>scm:git:https://github.com/mrdanpsmith/string-tailor.git</connection>
-    <developerConnection>scm:git:https://github.com/mrdanpsmith/string-tailor.git</developerConnection>
+    <url>https://github.com/mrdanpsmith/stringtailor</url>
+    <connection>scm:git:https://github.com/mrdanpsmith/stringtailor.git</connection>
+    <developerConnection>scm:git:https://github.com/mrdanpsmith/stringtailor.git</developerConnection>
   </scm>
   
   <developers>
