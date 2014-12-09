@@ -27,6 +27,14 @@ StringTailor will be in maven central.  Simply add the following dependency:
 </dependency>
 ```
 
+Changelog
+---------
+0.1.0 - Initial release.
+
+0.1.1 - Change GitHub repository URL.
+
+0.1.2 - Fix issue with optional clauses and empty lists.  Add test case for optional clause with an empty list.
+
 Usage
 -----
 Great usage examples can be found in the test cases.  I included a couple of those

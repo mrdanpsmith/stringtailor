@@ -28,9 +28,11 @@ public class VarList implements Evaluatable {
 		return listToString((List<?>)value);
 	}
 	
-	private String listToString(List<?> value) {
+	private String listToString(List<?> values) {
+		if (values.size() == 0) {
+			return null;
+		}
 		StringBuilder sb = new StringBuilder();
-		List<?> values = (List<?>)value;
 		if (config.prefix != null) {
 			sb.append(config.prefix);
 		}

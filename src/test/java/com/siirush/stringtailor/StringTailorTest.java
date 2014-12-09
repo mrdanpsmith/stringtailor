@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,6 +113,35 @@ public class StringTailorTest {
 					.done();
 		assertEquals("Hello, World!",evaluator.evaluate(statement, context));
 		assertEquals("Hello!",evaluator.evaluate(statement, emptyContext));
+	}
+	
+	@Test
+	public void testOptionalListExpressionWithEmptyList() {
+		EvaluatableStatement statement = 
+				statement()
+					.add(literal("Grocery list"))
+					.optional(literal(":"),list("GROCERY LIST"))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("GROCERY LIST",Collections.<String>emptyList())
+					.done();
+		assertEquals("Grocery list",evaluator.evaluate(statement,context));
+	}
+	
+	@Test
+	public void testOptionalListExpressionWithNullList() {
+		EvaluatableStatement statement = 
+				statement()
+					.add(literal("Grocery list"))
+					.optional(literal(":"),list("GROCERY LIST"))
+					.done();
+		List<String> nullList = null;
+		Map<String,Object> context =
+				context()
+					.add("GROCERY LIST",nullList)
+					.done();
+		assertEquals("Grocery list",evaluator.evaluate(statement,context));
 	}
 	
 	@Test
