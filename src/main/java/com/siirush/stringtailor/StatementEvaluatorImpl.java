@@ -22,7 +22,7 @@ public class StatementEvaluatorImpl implements StatementEvaluator {
 			Object componentValue = context.get(component.getName());
 			String evaluated = component.evaluate(componentValue);
 			if (evaluated == null && expression.getRequired()) {
-				throw new MissingValueException("Missing value found evaluating a required expression.");
+				throw new MissingValueException(String.format("Missing value for: %s found while evaluating a required expression.",component.getName()));
 			}
 			if (evaluated == null) {
 				return new StringBuilder();
