@@ -4,6 +4,8 @@ import static com.siirush.stringtailor.StringTailorDsl.context;
 import static com.siirush.stringtailor.StringTailorDsl.list;
 import static com.siirush.stringtailor.StringTailorDsl.listConfig;
 import static com.siirush.stringtailor.StringTailorDsl.literal;
+import static com.siirush.stringtailor.StringTailorDsl.multi;
+import static com.siirush.stringtailor.StringTailorDsl.multiConfig;
 import static com.siirush.stringtailor.StringTailorDsl.statement;
 import static com.siirush.stringtailor.StringTailorDsl.var;
 import static org.junit.Assert.assertEquals;
@@ -142,6 +144,57 @@ public class StringTailorTest {
 					.add("GROCERY LIST",nullList)
 					.done();
 		assertEquals("Grocery list",evaluator.evaluate(statement,context));
+	}
+	
+	@Test
+	public void testMultiExpression() {
+		EvaluatableStatement statement =
+				statement()
+					.add(multi("STARS","*"))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("STARS",8)
+					.done();
+		assertEquals("********",evaluator.evaluate(statement, context));
+	}
+	
+	@Test
+	public void testMultiExpressionWithDelimiter() {
+		EvaluatableStatement statement = 
+				statement()
+					.add(multi("STARS","*",multiConfig(",")))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("STARS",8)
+					.done();
+		assertEquals("*,*,*,*,*,*,*,*",evaluator.evaluate(statement, context));
+	}
+	
+	@Test
+	public void testMultiExpressionWithFullConfiguration() {
+		EvaluatableStatement statement =
+				statement()
+					.add(multi("STARS","*",multiConfig("(",",",")")))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("STARS",8)
+					.done();
+		assertEquals("(*,*,*,*,*,*,*,*)",evaluator.evaluate(statement, context));
+	}
+	
+	@Test
+	public void testOptionalMultiExpression() {
+		EvaluatableStatement statement =
+				statement()
+					.optional(multi("STARS","*",multiConfig(",")))
+					.done();
+		Map<String,Object> emptyContext =
+				context()
+					.done();
+		assertEquals("",evaluator.evaluate(statement, emptyContext));
 	}
 	
 	@Test

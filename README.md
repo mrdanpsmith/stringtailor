@@ -35,6 +35,8 @@ Changelog
 
 0.1.2 - Fix issue with optional clauses and empty lists.  Add test case for optional clause with an empty list.
 
+0.1.3 - Add multi support for building Strings through multiplication.
+
 Usage
 -----
 Great usage examples can be found in the test cases.  I included a couple of those
@@ -93,4 +95,46 @@ Map<String,Object> contextWithList =
 			.done();
 assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, context));
 assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, contextWithList));
+```
+
+With multi clauses:
+```Java
+EvaluatableStatement statement =
+		statement()
+			.add(multi("STARS","*"))
+			.done();
+Map<String,Object> context =
+		context()
+			.add("STARS",8)
+			.done();
+assertEquals("********",evaluator.evaluate(statement, context));
+
+EvaluatableStatement statement = 
+		statement()
+			.add(multi("STARS","*",multiConfig(",")))
+			.done();
+Map<String,Object> context =
+		context()
+			.add("STARS",8)
+			.done();
+assertEquals("*,*,*,*,*,*,*,*",evaluator.evaluate(statement, context));
+
+EvaluatableStatement statement =
+		statement()
+			.add(multi("STARS","*",multiConfig("(",",",")")))
+			.done();
+Map<String,Object> context =
+		context()
+			.add("STARS",8)
+			.done();
+assertEquals("(*,*,*,*,*,*,*,*)",evaluator.evaluate(statement, context));
+
+EvaluatableStatement statement =
+		statement()
+			.optional(multi("STARS","*",multiConfig(",")))
+			.done();
+Map<String,Object> emptyContext =
+		context()
+			.done();
+assertEquals("",evaluator.evaluate(statement, emptyContext));
 ```
