@@ -23,7 +23,7 @@ StringTailor will be in maven central.  Simply add the following dependency:
 <dependency>
     <groupId>com.siirush</groupId>
     <artifactId>stringtailor</artifactId>
-    <version>0.1.1</version>
+    <version>0.1.3</version>
 </dependency>
 ```
 
