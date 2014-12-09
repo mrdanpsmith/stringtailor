@@ -198,6 +198,19 @@ public class StringTailorTest {
 	}
 	
 	@Test
+	public void testZeroMultiExpression() {
+		EvaluatableStatement statement =
+				statement()
+					.optional(multi("STARS","*"))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("STARS",0)
+					.done();
+		assertEquals("",evaluator.evaluate(statement, context));
+	}
+	
+	@Test
 	public void testMissingRequiredVariable() {
 		EvaluatableStatement statement = 
 				statement()
@@ -210,6 +223,26 @@ public class StringTailorTest {
 		try {
 			evaluator.evaluate(statement, context);
 		} catch (MissingValueException e) {
+			thrown = e;
+		}
+		assertNotNull(thrown);
+		assertEquals(String.format("Missing value for: %s found while evaluating a required expression.","SUBJECT"),thrown.getMessage());
+	}
+	
+	@Test
+	public void testNonIntegerPassedWhereIntegerRequired() {
+		EvaluatableStatement statement =
+				statement()
+					.add(multi("STARS","*"))
+					.done();
+		Map<String,Object> context =
+				context()
+					.add("STARS","fjdksl")
+					.done();
+		UnexpectedValueException thrown = null;
+		try {
+			evaluator.evaluate(statement, context);
+		} catch (UnexpectedValueException e) {
 			thrown = e;
 		}
 		assertNotNull(thrown);
