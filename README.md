@@ -35,7 +35,7 @@ Changelog
 
 0.1.2 - Fix issue with optional clauses and empty lists.  Add test case for optional clause with an empty list.
 
-0.1.3 - Add multi support for building Strings through multiplication.
+0.1.3 - Add multi support for building Strings through multiplication.  Add better error messaging for failed evaluations.
 
 Usage
 -----
