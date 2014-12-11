@@ -1,5 +1,6 @@
 package com.siirush.stringtailor;
 
+import com.siirush.stringtailor.model.Evaluatable;
 import com.siirush.stringtailor.model.Literal;
 import com.siirush.stringtailor.model.Multi;
 import com.siirush.stringtailor.model.Var;
@@ -11,6 +12,13 @@ import com.siirush.stringtailor.model.VarList;
 public class StringTailorDsl {
 	public static StringTailor statement() {
 		return new StringTailorImpl();
+	}
+	/**
+	 * @since 0.1.4
+	 */
+	public static StringTailor statement(Evaluatable ... components) {
+		StringTailor stringTailor = statement();
+		return stringTailor.add(components);
 	}
 	public static Var var(String name) {
 		return new Var(name);
@@ -69,5 +77,12 @@ public class StringTailorDsl {
 	}
 	public static ContextBuilder context() {
 		return new ContextBuilderImpl();
+	}
+	/**
+	 * @since 0.1.4
+	 */
+	public static ContextBuilder context(String name, String ... values) {
+		ContextBuilder contextBuilder = new ContextBuilderImpl();
+		return contextBuilder.add(name, (Object[])values);
 	}
 }

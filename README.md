@@ -37,6 +37,8 @@ Changelog
 
 0.1.3 - Add multi support for building Strings through multiplication.  Add better error messaging for failed evaluations.
 
+0.1.4 - Add support for passing a required expression in statement() and initial values in context().
+
 Usage
 -----
 Great usage examples can be found in the test cases.  I included a couple of those
@@ -54,6 +56,27 @@ Map<String,Object> context =
 			.add("SUBJECT","World")
 			.done();
 assertEquals("Hello, World!",evaluator.evaluate(statement, context));
+```
+
+Required expression in first usage:
+```Java
+EvaluatableStatement statement =
+		statement(literal("Hello, "),var("SUBJECT"),literal("!")).done();
+Map<String,Object> context =
+		context("SUBJECT","World")
+			.done();
+assertEquals("Hello, World!",evaluator.evaluate(statement, context));
+```
+
+Context values in first usage:
+```Java
+EvaluatableStatement statement =
+		statement(literal("Grocery list: "),list("GROCERY LIST"))
+			.done();
+Map<String,Object> context =
+		context("GROCERY LIST","Milk","Eggs","Bread")
+			.done();
+assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, context));
 ```
 
 With an optional expression:

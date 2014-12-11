@@ -29,6 +29,8 @@ import com.siirush.stringtailor.exception.UnexpectedValueException;
 import com.siirush.stringtailor.model.EvaluatableStatement;
 
 public class StringTailorTest {
+	private static final String MISSING_VALUE_EXCEPTION_TEMPLATE = "Missing value for: %s found while evaluating a required expression.";
+
 	public StringTailorTest() {
 		Injector injector = Guice.createInjector(new TestModule());
 		injector.injectMembers(this);
@@ -36,6 +38,16 @@ public class StringTailorTest {
 	
 	@Inject
 	private StatementEvaluator evaluator;
+	
+	@Test
+	public void testStatementWithExpressionAndContextWithInitialValue() {
+		EvaluatableStatement statement =
+				statement(literal("Hello, "),var("SUBJECT"),literal("!")).done();
+		Map<String,Object> context =
+				context("SUBJECT","World")
+					.done();
+		assertEquals("Hello, World!",evaluator.evaluate(statement, context));
+	}
 	
 	@Test
 	public void testLiteralsAndVars() {
@@ -70,6 +82,17 @@ public class StringTailorTest {
 					.done();
 		assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, context));
 		assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, contextWithList));
+	}
+	
+	@Test
+	public void testListInContextCreation() {
+		EvaluatableStatement statement =
+				statement(literal("Grocery list: "),list("GROCERY LIST"))
+					.done();
+		Map<String,Object> context =
+				context("GROCERY LIST","Milk","Eggs","Bread")
+					.done();
+		assertEquals("Grocery list: Milk,Eggs,Bread",evaluator.evaluate(statement, context));
 	}
 	
 	@Test
@@ -226,7 +249,24 @@ public class StringTailorTest {
 			thrown = e;
 		}
 		assertNotNull(thrown);
-		assertEquals(String.format("Missing value for: %s found while evaluating a required expression.","SUBJECT"),thrown.getMessage());
+		assertEquals(String.format(MISSING_VALUE_EXCEPTION_TEMPLATE,"SUBJECT"),thrown.getMessage());
+	}
+	
+	@Test
+	public void testStatementWithEvaluatablesIsMandatory() {
+		EvaluatableStatement statement =
+				statement(literal("Hello, "),var("SUBJECT"),literal("!")).done();
+		Map<String,Object> emptyContext =
+				context()
+					.done();
+		MissingValueException thrown = null;
+		try {
+			evaluator.evaluate(statement,emptyContext);
+		} catch (MissingValueException e) {
+			thrown = e;
+		}
+		assertNotNull(thrown);
+		assertEquals(String.format(MISSING_VALUE_EXCEPTION_TEMPLATE,"SUBJECT"),thrown.getMessage());
 	}
 	
 	@Test
